@@ -1,0 +1,81 @@
+/* Binary Time — component styles. Tokens live in ../design/tokens.css */
+html, body { margin: 0; height: 100%; }
+body { overflow: hidden; cursor: none; }
+body.show-cursor { cursor: auto; }
+
+.bt-root { position: fixed; inset: 0; overflow: hidden; container-type: size; container-name: bt; background-color: var(--bg); color: var(--fg); font-family: var(--font); transition: background-color var(--dur-theme) ease, color var(--dur-theme) ease; -webkit-font-smoothing: antialiased; }
+.bt-screen { position: absolute; inset: 0; box-sizing: border-box; padding: var(--pad); display: flex; flex-direction: column; justify-content: space-between; gap: var(--gap); font-size: var(--fs-base); font-variant-numeric: tabular-nums; }
+
+.bt-top, .bt-bottom { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+.bt-bottom { align-items: flex-end; }
+.bt-block { display: flex; flex-direction: column; gap: .35em; min-width: 0; }
+.bt-right { text-align: end; align-items: flex-end; }
+.bt-k { font-size: .82em; letter-spacing: .18em; text-transform: uppercase; opacity: var(--o-mid); display: flex; align-items: center; gap: .6em; }
+.bt-v { font-size: 1.15em; font-weight: var(--fw-semibold); letter-spacing: .06em; text-transform: uppercase; unicode-bidi: plaintext; }
+.bt-s { font-size: .9em; opacity: var(--o-mid); letter-spacing: .04em; unicode-bidi: plaintext; }
+.bt-pulse { width: .55em; height: .55em; flex: 0 0 auto; border-radius: 50%; background: currentColor; animation: btPulse 2s ease-in-out infinite; }
+@keyframes btPulse { 0%, 100% { opacity: 1 } 50% { opacity: .2 } }
+
+/* The bit block is one centred column as wide as its widest row; header/footer span the full width */
+.bt-main { flex: 1; display: grid; grid-template-columns: minmax(0, max-content); justify-content: center; align-content: center; row-gap: var(--gap); }
+.bt-group { display: flex; flex-direction: column; gap: var(--gap); }
+.bt-date { gap: calc(var(--gap) * .6); }
+.bt-date .bt-bits { justify-items: center; align-items: center; }
+.bt-date .c { width: calc(var(--b) * var(--date-scale)); height: calc(var(--b) * var(--date-scale)); }
+.bt-date .bt-label, .bt-date .bt-dec { opacity: var(--o-mid); }
+.bt-date .bt-dec { font-size: min(calc(var(--b) * .4), 1.6em); font-weight: var(--fw-light); }
+.bt-sep { display: flex; align-items: center; gap: 1em; margin: calc(var(--gap) * 1.2) 0; font-size: .78em; letter-spacing: .24em; text-transform: uppercase; }
+.bt-sep::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: var(--o-rule); }
+.bt-sep span { opacity: var(--o-mid); }
+.bt-time .bt-label { font-weight: var(--fw-semibold); }
+
+.bt-row { display: flex; align-items: center; gap: var(--gap); }
+.bt-label { width: var(--lab); flex: 0 0 auto; display: flex; flex-direction: column; gap: .25em; letter-spacing: .18em; text-transform: uppercase; font-size: .9em; }
+.bt-sub { font-size: .85em; letter-spacing: .08em; opacity: var(--o-mid); text-transform: none; }
+.bt-bits { direction: ltr; display: grid; grid-template-columns: repeat(var(--w), var(--b)); column-gap: var(--gap); flex: 0 0 auto; }
+.bt-dec { width: var(--dec); flex: 0 0 auto; text-align: end; font-size: min(calc(var(--b) * .62), 2.4em); font-weight: var(--fw-regular); letter-spacing: .02em; }
+
+.c { width: var(--b); height: var(--b); box-sizing: border-box; border-radius: 50%; transition: background-color var(--dur-bit) ease, transform var(--dur-bit) ease, opacity var(--dur-bit) ease; }
+.sq .c { border-radius: max(2px, calc(var(--b) * .12)); }
+.c.on { background: currentColor; }
+.c.off { border: max(1px, calc(var(--b) * .055)) solid currentColor; opacity: var(--o-low); }
+.c.void { background: currentColor; opacity: var(--o-ghost); transform: scale(.1); }
+.fast .c { transition: none; }
+
+.bt-head { margin-bottom: calc(var(--gap) * -.4); }
+.bt-place { width: var(--b); text-align: center; font-size: clamp(9px, calc(var(--b) * .2), 15px); opacity: var(--o-mid); letter-spacing: 0; }
+
+.bt-readout { font-size: 1.5em; font-weight: var(--fw-light); letter-spacing: .08em; white-space: nowrap; unicode-bidi: isolate; }
+.bt-ampm { margin-inline-start: .6em; font-size: .6em; font-weight: var(--fw-semibold); letter-spacing: .2em; }
+.bt-legend { display: flex; gap: 1.6em; font-size: .8em; opacity: var(--o-mid); letter-spacing: .12em; text-transform: uppercase; margin-top: .6em; }
+.bt-legend span { display: inline-flex; align-items: center; gap: .6em; }
+.lg { width: .8em; height: .8em; border-radius: 50%; box-sizing: border-box; display: inline-block; }
+.sq .lg { border-radius: 2px; }
+.lg.on { background: currentColor; } .lg.off { border: 1px solid currentColor; }
+
+.bt-controls { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; transition: opacity .4s; }
+.bt-controls[hidden] { display: none; }
+.bt-btn { display: inline-flex; align-items: center; gap: .5em; min-height: var(--btn-h); padding: 0 16px; background: transparent; color: inherit; border: 1px solid currentColor; border-radius: 999px; font: inherit; font-size: .82em; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; opacity: var(--o-mid); transition: opacity var(--dur-control); }
+.bt-btn svg { width: 1.2em; height: 1.2em; flex: 0 0 auto; }
+.bt-btn:hover, .bt-btn:focus-visible { opacity: 1; }
+.bt-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* Script rules */
+.s-free * { letter-spacing: normal !important; text-transform: none !important; }
+.s-tibt .bt-screen { line-height: 1.7; }
+.s-tibt .bt-label, .s-tibt .bt-k, .s-tibt .bt-btn { font-size: 1em; }
+
+@container bt (max-width: 680px) {
+  .bt-main { grid-template-columns: minmax(0, 1fr); }
+  .bt-top { flex-direction: column; gap: 14px; }
+  .bt-right { text-align: start; align-items: flex-start; }
+  .bt-sep { margin: calc(var(--gap) * .6) 0; }
+  .bt-head { display: none; }
+  .bt-row { flex-wrap: wrap; row-gap: 8px; align-items: baseline; }
+  .bt-label { width: auto; flex-direction: row; gap: .8em; align-items: baseline; }
+  .bt-dec { width: auto; margin-inline-start: auto; order: 1; font-size: 1.3em; }
+  .bt-bits { order: 2; flex-basis: 100%; }
+  .bt-readout { font-size: 1.15em; white-space: normal; }
+  .bt-controls { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .c, .bt-root { transition: none; } .bt-pulse { animation: none; } }

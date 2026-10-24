@@ -1,0 +1,49 @@
+/* Binary Time — design tokens v1.0 (mirror of tokens.json) */
+.bt-root {
+  --ink: #000000;
+  --paper: #FFFFFF;
+
+  --o-mid: .66;    /* secondary text, labels, controls at rest, date group */
+  --o-low: .42;    /* bit = 0 outline */
+  --o-ghost: .22;  /* void bit position */
+  --o-rule: .5;    /* separator line */
+
+  --font: 'JetBrains Mono', 'Noto Sans Hebrew', 'Noto Sans Arabic', 'Noto Serif Tibetan', 'Noto Sans JP', ui-monospace, Menlo, monospace;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+
+  --dur-bit: .18s;
+  --dur-theme: .6s;
+  --dur-control: .2s;
+
+  --btn-h: 44px;
+}
+.t-dark  { --bg: var(--ink);   --fg: var(--paper); }
+.t-light { --bg: var(--paper); --fg: var(--ink); }
+
+/* Fluid spacing — resolved against the root container (.bt-root has container-type: size) */
+.bt-screen {
+  --pad: clamp(16px, 4.2cqmin, 64px);
+  --gap: clamp(6px, 1.4cqmin, 20px);
+  --fs-base: clamp(11px, 1.45cqmin, 22px);
+}
+.bt-main {
+  --lab: clamp(84px, 12cqw, 230px);
+  --dec: clamp(60px, 9cqw, 170px);
+  --b: min(
+    calc((100cqw - 2*var(--pad) - var(--lab) - var(--dec) - (var(--w) + 1)*var(--gap)) / var(--w)),
+    calc((100cqh - 2*var(--pad) - 30cqh) / 10.4),
+    116px
+  );
+  --date-scale: .56;
+}
+@container bt (max-width: 680px) {
+  .bt-main {
+    --b: min(
+      calc((100cqw - 2*var(--pad) - (var(--w) - 1)*var(--gap)) / var(--w)),
+      calc((100cqh - 2*var(--pad) - 46cqh) / 7.2),
+      64px
+    );
+  }
+}
