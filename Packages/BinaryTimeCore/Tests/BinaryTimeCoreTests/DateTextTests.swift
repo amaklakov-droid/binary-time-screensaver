@@ -14,7 +14,9 @@ final class DateTextTests: XCTestCase {
 
     func testDateLinesMatchReferenceScreens() {
         XCTAssertEqual(formatter.dateLine(instant, parts: parts(.gregory), calendar: .gregory, lang: .en, timeZone: moscow), "Saturday, October 24, 2026")
-        XCTAssertEqual(plainSpaces(formatter.dateLine(instant, parts: parts(.gregory), calendar: .gregory, lang: .ru, timeZone: moscow)), "суббота, 24 октября 2026 г.")
+        let russian = formatter.dateLine(instant, parts: parts(.gregory), calendar: .gregory, lang: .ru, timeZone: moscow)
+        XCTAssertEqual(plainSpaces(russian), "суббота, 24 октября 2026 г.")
+        XCTAssertFalse(russian.contains("\u{202F}"), "Narrow no-break space has no glyph in JetBrains Mono")
         XCTAssertEqual(formatter.dateLine(instant, parts: parts(.hebrew), calendar: .hebrew, lang: .he, timeZone: moscow), "יום שבת, 13 בחשון 5787")
         let arabic = formatter.dateLine(instant, parts: parts(.islamic), calendar: .islamic, lang: .ar, timeZone: moscow)
         XCTAssertTrue(arabic.contains("١٤٤٨"), arabic)

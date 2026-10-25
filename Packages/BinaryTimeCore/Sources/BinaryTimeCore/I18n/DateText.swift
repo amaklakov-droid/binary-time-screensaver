@@ -26,7 +26,9 @@ public final class DateTextFormatter {
         let formatter = self.formatter(key: "dateLine|\(lang.rawValue)|\(calendar.rawValue)|\(timeZone.identifier)", lang: lang, calendar: calendar, timeZone: timeZone) {
             $0.setLocalizedDateFormatFromTemplate("EEEEdMMMMy")
         }
-        return catalog.digits(formatter.string(from: date), lang)
+        // ICU separates «2026 г.» with U+202F; the bundled monospace has no glyph for it, NBSP keeps the no-break.
+        let text = formatter.string(from: date).replacingOccurrences(of: "\u{202F}", with: "\u{00A0}")
+        return catalog.digits(text, lang)
     }
 
     /// Short weekday for the day row sub-label («Sat», «сб», «土»).
