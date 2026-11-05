@@ -40,6 +40,6 @@ done
 echo "host changes: $changes" | tee -a "$log"
 # Why the saver quit its host, if it did (BinaryTimeSaverView logs the reason, nothing else).
 /usr/bin/log show --start "$started" --style compact \
-    --predicate 'subsystem == "com.binarytime.saver" AND eventMessage BEGINSWITH "Exiting host"' 2>/dev/null \
+    --predicate 'subsystem == "io.github.amaklakov-droid.binarytime" AND eventMessage BEGINSWITH "Exiting host"' 2>/dev/null \
     | tail -n +2 | tee -a "$log"
 echo "log: $log"

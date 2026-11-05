@@ -1,7 +1,7 @@
 # XcodeGen spec — regenerate BinaryTime.xcodeproj with `xcodegen generate`.
 name: BinaryTime
 options:
-  bundleIdPrefix: com.binarytime
+  bundleIdPrefix: io.github.amaklakov-droid.binarytime
   deploymentTarget:
     macOS: "14.0"
   createIntermediateGroups: true
@@ -58,20 +58,21 @@ targets:
         CFBundleName: Binary Time
         CFBundleDisplayName: Binary Time
         CFBundleExecutable: $(EXECUTABLE_NAME)
-        CFBundleShortVersionString: "0.3.0"
-        CFBundleVersion: "3"
+        CFBundleShortVersionString: "1.0.0"
+        CFBundleVersion: "4"
         LSMinimumSystemVersion: "14.0"
         NSPrincipalClass: BinaryTimeSaverView
-        NSHumanReadableCopyright: "Fonts: SIL Open Font License 1.1"
+        NSHumanReadableCopyright: "© 2026 Alexey Maklakov. MIT License. Fonts: SIL Open Font License 1.1."
     settings:
       base:
         PRODUCT_NAME: Binary Time
         PRODUCT_MODULE_NAME: BinaryTimeSaver
-        # Temporary identifier: choose the permanent one before release (settings are stored under it).
-        PRODUCT_BUNDLE_IDENTIFIER: com.binarytime.saver
+        # Permanent: ScreenSaverDefaults stores the user's settings under this identifier.
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.amaklakov-droid.binarytime
         WRAPPER_EXTENSION: saver
         ENABLE_HARDENED_RUNTIME: YES
-        COMBINE_HIDPI_IMAGES: YES
+        # Keep thumbnail.png and thumbnail@2x.png as macOS's own savers ship them, not merged into a TIFF.
+        COMBINE_HIDPI_IMAGES: NO
     scheme:
       testTargets: []
   DebugHost:
@@ -106,7 +107,7 @@ targets:
         LSApplicationCategoryType: public.app-category.developer-tools
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.binarytime.DebugHost
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.amaklakov-droid.binarytime.DebugHost
         ENABLE_HARDENED_RUNTIME: NO
         COMBINE_HIDPI_IMAGES: YES
     scheme:

@@ -17,13 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>14.0</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Fonts: SIL Open Font License 1.1</string>
+	<string>© 2026 Alexey Maklakov. MIT License. Fonts: SIL Open Font License 1.1.</string>
 	<key>NSPrincipalClass</key>
 	<string>BinaryTimeSaverView</string>
 </dict>

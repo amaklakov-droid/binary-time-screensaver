@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08496C5F1983367BE8693B89 /* tokens.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FDEFD17894EAD5877D31676 /* tokens.json */; };
 		0B26BDEACE69782DB76791B3 /* BinaryTimeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03009CF53C76F9CEE140D80B /* BinaryTimeCore */; };
+		17CD63F1BABE40F3749FC0DF /* thumbnail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3450CBA8A388B9D42E708BE6 /* thumbnail@2x.png */; };
 		1AD626C75A0363D86B70230A /* BinaryTimeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 40EFD86122790F878476D2E5 /* BinaryTimeCore */; };
 		32B874F4873D9BD9FBCAAB13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523214F9BF65331390155D38 /* main.swift */; };
 		3E9CD7AC032D7FDFD028324B /* OptionsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFB0E4AB80241B878B278A /* OptionsSheet.swift */; };
@@ -20,6 +21,7 @@
 		8639640D647825279F71B687 /* ControlsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D978735EF5C37557F216F02 /* ControlsBar.swift */; };
 		8941C54CC1AC5BCD5DF553AC /* i18n.json in Resources */ = {isa = PBXBuildFile; fileRef = 6117BD50E922D65CDD546C40 /* i18n.json */; };
 		9DA5A0B0482FD520E4E84B5A /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98046137AC5CC3A417AEAC /* Screenshot.swift */; };
+		A543DA6345E3B23415C64A4D /* thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F539FBAAA4956418E81D58B /* thumbnail.png */; };
 		A675D8E39166067153E703DE /* BinaryTimeSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD37FF6B3212F48C6D205D43 /* BinaryTimeSaverView.swift */; };
 		B28CF722B125A3B3DC36DA6D /* celestial-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = E986B88F5AA632602BBBC4F9 /* celestial-catalog.json */; };
 		B4A7E4E7F6541629738BC576 /* zone.tab in Resources */ = {isa = PBXBuildFile; fileRef = 9186E053A5F43DB58E845F4A /* zone.tab */; };
@@ -33,19 +35,25 @@
 
 /* Begin PBXFileReference section */
 		0FEA4A1439ACD4E92D67BD2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		134D18BCEDABF399ED7C9872 /* saver-soak.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "saver-soak.sh"; sourceTree = "<group>"; };
 		1AE7ACB56854706398B4C248 /* BinaryTimeUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BinaryTimeUI; path = Packages/BinaryTimeUI; sourceTree = SOURCE_ROOT; };
 		2AE6C3F3FAEA573EF5CD4E1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2FDEFD17894EAD5877D31676 /* tokens.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tokens.json; sourceTree = "<group>"; };
+		3450CBA8A388B9D42E708BE6 /* thumbnail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbnail@2x.png"; sourceTree = "<group>"; };
 		49FEDC488018BE73960173AC /* render-references.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "render-references.sh"; sourceTree = "<group>"; };
 		523214F9BF65331390155D38 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5D091BE4A1CD348448E63800 /* BinaryTimeSaver.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinaryTimeSaver.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F539FBAAA4956418E81D58B /* thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbnail.png; sourceTree = "<group>"; };
 		605C9162D2A1C0346855EC87 /* fetch-fonts.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "fetch-fonts.sh"; sourceTree = "<group>"; };
 		6117BD50E922D65CDD546C40 /* i18n.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = i18n.json; sourceTree = "<group>"; };
 		6786E19CF89E2031A6A7207E /* BinaryTimeCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BinaryTimeCore; path = Packages/BinaryTimeCore; sourceTree = SOURCE_ROOT; };
+		69767E0CDFC95A1BC9799243 /* render-thumbnail.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "render-thumbnail.sh"; sourceTree = "<group>"; };
+		6A08A6382DA3631CC6FCB44C /* saver-cycles.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "saver-cycles.sh"; sourceTree = "<group>"; };
 		6D978735EF5C37557F216F02 /* ControlsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsBar.swift; sourceTree = "<group>"; };
 		6EB746F4EFD8EBBD20337291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9186E053A5F43DB58E845F4A /* zone.tab */ = {isa = PBXFileReference; path = zone.tab; sourceTree = "<group>"; };
 		96FA925664E20A12C7B795AE /* HostOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostOptions.swift; sourceTree = "<group>"; };
+		97C8CF8B846AEF60293C48E7 /* saver-cpu.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "saver-cpu.sh"; sourceTree = "<group>"; };
 		9AB343998366A1A45A232F46 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
 		AB065F6690375A8A5BDE386C /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = SOURCE_ROOT; };
 		AE7A3A67C0E0716EC0652E5C /* DebugHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +103,8 @@
 				BD37FF6B3212F48C6D205D43 /* BinaryTimeSaverView.swift */,
 				6EB746F4EFD8EBBD20337291 /* Info.plist */,
 				E1CFB0E4AB80241B878B278A /* OptionsSheet.swift */,
+				5F539FBAAA4956418E81D58B /* thumbnail.png */,
+				3450CBA8A388B9D42E708BE6 /* thumbnail@2x.png */,
 			);
 			path = Saver;
 			sourceTree = "<group>";
@@ -169,6 +179,10 @@
 			children = (
 				605C9162D2A1C0346855EC87 /* fetch-fonts.sh */,
 				49FEDC488018BE73960173AC /* render-references.sh */,
+				69767E0CDFC95A1BC9799243 /* render-thumbnail.sh */,
+				97C8CF8B846AEF60293C48E7 /* saver-cpu.sh */,
+				6A08A6382DA3631CC6FCB44C /* saver-cycles.sh */,
+				134D18BCEDABF399ED7C9872 /* saver-soak.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -269,6 +283,8 @@
 				70778A1640F66640936F4516 /* Fonts in Resources */,
 				B28CF722B125A3B3DC36DA6D /* celestial-catalog.json in Resources */,
 				8941C54CC1AC5BCD5DF553AC /* i18n.json in Resources */,
+				A543DA6345E3B23415C64A4D /* thumbnail.png in Resources */,
+				17CD63F1BABE40F3749FC0DF /* thumbnail@2x.png in Resources */,
 				5E1582FFBAA41B184CA9FF3B /* tokens.json in Resources */,
 				D3222940A9864F0B6F093FC0 /* zone.tab in Resources */,
 			);
@@ -384,14 +400,14 @@
 		59F1C35911D2BBD2AE507807 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Saver/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.binarytime.saver;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.amaklakov-droid.binarytime";
 				PRODUCT_MODULE_NAME = BinaryTimeSaver;
 				PRODUCT_NAME = "Binary Time";
 				SDKROOT = macosx;
@@ -410,7 +426,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.binarytime.DebugHost;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.amaklakov-droid.binarytime.DebugHost";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -418,14 +434,14 @@
 		A053F5B619EED9204A71C016 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
+				COMBINE_HIDPI_IMAGES = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Saver/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.binarytime.saver;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.amaklakov-droid.binarytime";
 				PRODUCT_MODULE_NAME = BinaryTimeSaver;
 				PRODUCT_NAME = "Binary Time";
 				SDKROOT = macosx;
@@ -506,7 +522,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.binarytime.DebugHost;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.amaklakov-droid.binarytime.DebugHost";
 				SDKROOT = macosx;
 			};
 			name = Release;
