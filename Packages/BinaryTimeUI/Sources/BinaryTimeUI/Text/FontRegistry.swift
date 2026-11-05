@@ -85,8 +85,8 @@ public final class FontRegistry {
             .cascadeList: cascade,
             .featureSettings: tabular,
         ]
-        let descriptor = NSFontDescriptor(fontAttributes: attributes)
-        return NSFont(descriptor: descriptor, size: size)
+        let fontDescriptor = NSFontDescriptor(fontAttributes: attributes)
+        return NSFont(descriptor: fontDescriptor, size: size)
             ?? NSFont.monospacedSystemFont(ofSize: size, weight: FontRegistry.weight(css: weight))
     }
 }
