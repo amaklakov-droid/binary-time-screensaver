@@ -63,6 +63,7 @@
 		E1CFB0E4AB80241B878B278A /* OptionsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsSheet.swift; sourceTree = "<group>"; };
 		E986B88F5AA632602BBBC4F9 /* celestial-catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "celestial-catalog.json"; sourceTree = "<group>"; };
 		EC98046137AC5CC3A417AEAC /* Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshot.swift; sourceTree = "<group>"; };
+		EEAEB5C2728583CFB8412E98 /* release.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = release.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				605C9162D2A1C0346855EC87 /* fetch-fonts.sh */,
+				EEAEB5C2728583CFB8412E98 /* release.sh */,
 				49FEDC488018BE73960173AC /* render-references.sh */,
 				69767E0CDFC95A1BC9799243 /* render-thumbnail.sh */,
 				97C8CF8B846AEF60293C48E7 /* saver-cpu.sh */,

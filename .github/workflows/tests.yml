@@ -1,0 +1,54 @@
+# Unit tests of the Core and UI packages on every supported macOS that GitHub hosts, and a universal
+# Release build of the .saver. Calendar and date formatting come from the system (ICU), so the tests
+# run on each major version, not only on the newest one.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, macos-15, macos-26]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versions
+        run: sw_vers && xcodebuild -version && swift --version
+      - name: Core tests
+        working-directory: Packages/BinaryTimeCore
+        run: swift test
+      - name: UI tests
+        working-directory: Packages/BinaryTimeUI
+        run: swift test
+
+  build:
+    name: Release build (universal)
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: |
+          xcodebuild -project BinaryTime.xcodeproj -scheme BinaryTimeSaver -configuration Release \
+            -derivedDataPath build/DerivedData build
+      - name: Check the binary is universal
+        run: |
+          bin="build/DerivedData/Build/Products/Release/Binary Time.saver/Contents/MacOS/Binary Time"
+          archs=$(lipo -archs "$bin")
+          echo "$archs"
+          [[ $archs == *arm64* && $archs == *x86_64* ]]
