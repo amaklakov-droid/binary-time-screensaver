@@ -116,7 +116,6 @@ public final class ScreenPresenter {
             .hours: hourFormat == .h12 ? dayPeriod : t.h24.replacingOccurrences(of: "{n}", with: "24"),
             .minutes: t.range,
             .seconds: t.range,
-            .hundredths: t.hund,
         ]
 
         let rows = Metric.allCases.map { metric -> RowModel in

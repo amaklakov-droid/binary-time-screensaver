@@ -289,7 +289,7 @@ public enum SceneLayout {
         let sepMargin = CGFloat(metrics.separatorMargin)
         let placeBlockH = narrow ? 0 : placeRowH + gap * (1 - PrototypeStyle.placeRowOverlapFactor)
         let dateH = 3 * rowHDate + 2 * dateRowGap
-        let timeH = 4 * rowHTime + 3 * gap
+        let timeH = 3 * rowHTime + 2 * gap
         let totalH = placeBlockH + dateH + gap + sepMargin + sepStyle.lineHeight + sepMargin + gap + timeH
         frames.overflows = totalH > mainH + 0.5
         var y = mainTop + max(0, (mainH - totalH) / 2)
@@ -369,7 +369,7 @@ public enum SceneLayout {
             frames.shapes[.separatorRule] = CGRect(x: blockX + sepW + sepGap, y: ruleY, width: max(0, blockW - sepW - sepGap), height: 1)
         }
         y += sepStyle.lineHeight + sepMargin + gap
-        for (i, metric) in [Metric.hours, .minutes, .seconds, .hundredths].enumerated() {
+        for (i, metric) in [Metric.hours, .minutes, .seconds].enumerated() {
             if i > 0 { y += gap }
             layoutRow(metric, rowY: y, rowH: rowHTime, cell: b, label: labelTime, dec: decTime)
             y += rowHTime

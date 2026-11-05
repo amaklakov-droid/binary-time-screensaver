@@ -13,19 +13,15 @@ final class FrameComposerTests: XCTestCase {
                       now: Fixtures.referenceInstant)
     }
 
-    func testFastPathEqualsFullModelWithinASecond() {
+    func testSameSecondReturnsCachedModel() {
         let c = composer()
-        let t0 = Fixtures.date("2026-10-24T19:59:17.800+03:00")
-        let t1 = Fixtures.date("2026-10-24T19:59:17.830+03:00")
-        let full = c.frame(at: t0)
-        let fast = c.frame(at: t1)
+        let first = c.frame(at: Fixtures.date("2026-10-24T19:59:17.100+03:00"))
+        let later = c.frame(at: Fixtures.date("2026-10-24T19:59:17.900+03:00"))
         c.invalidate()
-        let reference = c.frame(at: t1)
-        XCTAssertEqual(fast, reference, "Patched model must match a freshly built one")
-        XCTAssertEqual(full.rows[6].decimal, "80")
-        XCTAssertEqual(fast.rows[6].decimal, "83")
-        XCTAssertEqual(fast.footer.readout, "2026·10·24  19:59:17.83")
-        XCTAssertEqual(fast.rows[5], full.rows[5], "Seconds row untouched")
+        let rebuilt = c.frame(at: Fixtures.date("2026-10-24T19:59:17.900+03:00"))
+        XCTAssertEqual(first, later)
+        XCTAssertEqual(later, rebuilt)
+        XCTAssertEqual(later.footer.readout, "2026·10·24  19:59:17")
     }
 
     func testSecondChangeRebuilds() {
@@ -34,7 +30,6 @@ final class FrameComposerTests: XCTestCase {
         let b = c.frame(at: Fixtures.date("2026-10-24T19:59:18.000+03:00"))
         XCTAssertEqual(a.rows[5].decimal, "17")
         XCTAssertEqual(b.rows[5].decimal, "18")
-        XCTAssertEqual(b.rows[6].decimal, "00")
     }
 
     func testSettingsResolveLanguageAndCalendar() {

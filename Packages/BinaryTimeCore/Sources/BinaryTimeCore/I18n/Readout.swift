@@ -1,6 +1,6 @@
 import Foundation
 
-/// The footer readout `YYYY·MM·DD  HH:MM:SS.cc` and the UTC offset legend (SPEC §2, §5).
+/// The footer readout `YYYY·MM·DD  HH:MM:SS` and the UTC offset legend (SPEC §2, §5).
 public enum Readout {
     /// Left-to-right mark; keeps non-Latin digit groups in LTR order (Unicode bidi rule N1).
     public static let lrm = "\u{200E}"
@@ -30,7 +30,7 @@ public enum Readout {
         }
         let d = sample.date
         let raw = String(d.year) + dateSep + pad2(d.month) + dateSep + pad2(d.day) + groupSep
-            + pad2(sample.displayHour(hourFormat)) + ":" + pad2(sample.minute) + ":" + pad2(sample.second) + "." + pad2(sample.hundredth)
+            + pad2(sample.displayHour(hourFormat)) + ":" + pad2(sample.minute) + ":" + pad2(sample.second)
         return catalog.digits(raw, lang)
     }
 

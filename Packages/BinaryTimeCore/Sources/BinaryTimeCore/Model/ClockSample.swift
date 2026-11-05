@@ -15,14 +15,12 @@ public struct ClockSample: Equatable, Sendable {
     public var hour24: Int
     public var minute: Int
     public var second: Int
-    public var hundredth: Int
 
-    public init(date: DateParts, hour24: Int, minute: Int, second: Int, hundredth: Int) {
+    public init(date: DateParts, hour24: Int, minute: Int, second: Int) {
         self.date = date
         self.hour24 = hour24
         self.minute = minute
         self.second = second
-        self.hundredth = hundredth
     }
 
     public var isPM: Bool { hour24 >= 12 }
@@ -44,27 +42,24 @@ public struct ClockSample: Equatable, Sendable {
         case .hours: return (displayHour(hourFormat), hourFormat.hourBits)
         case .minutes: return (minute, 6)
         case .seconds: return (second, 6)
-        case .hundredths: return (hundredth, 7)
         }
     }
 
     /// Builds a sample for `instant` in `timeZone`, with the date expressed in `calendar`.
     ///
-    /// Time of day is taken from the Gregorian calendar (identical in all four calendars);
-    /// hundredths come from integer millisecond arithmetic so `…17.80` never reads as 79.
+    /// Time of day is taken from the Gregorian calendar (identical in all four calendars), after snapping
+    /// to whole milliseconds so an instant just before a second boundary never reads as the next second.
     public static func make(at instant: Date, timeZone: TimeZone, calendar: CalendarID) -> ClockSample {
         let milliseconds = Int64((instant.timeIntervalSince1970 * 1000).rounded())
         let snapped = Date(timeIntervalSince1970: Double(milliseconds) / 1000)
         var gregorian = Calendar(identifier: .gregorian)
         gregorian.timeZone = timeZone
         let time = gregorian.dateComponents([.hour, .minute, .second], from: snapped)
-        let positiveMs = ((milliseconds % 1000) + 1000) % 1000
         return ClockSample(
             date: CalendarService.dateParts(snapped, calendar: calendar, timeZone: timeZone),
             hour24: time.hour ?? 0,
             minute: time.minute ?? 0,
-            second: time.second ?? 0,
-            hundredth: Int(positiveMs / 10)
+            second: time.second ?? 0
         )
     }
 }

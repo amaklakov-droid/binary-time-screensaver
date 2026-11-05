@@ -280,8 +280,7 @@ public final class ClockScene {
             let shapeChanged = previous?.bitShape != newModel.bitShape || previous?.theme != newModel.theme
             guard changed || shapeChanged || previous == nil else { continue }
             let appearance = bitAppearance(for: row.metric, model: newModel, metrics: metrics, frames: frames)
-            // The hundredths row never animates (tokens `motion.hundredthsRow`).
-            let fade = animated && !reduceMotion && row.metric != .hundredths && changed && !shapeChanged
+            let fade = animated && !reduceMotion && changed && !shapeChanged
             CATransaction.begin()
             CATransaction.setDisableActions(!fade)
             if fade { CATransaction.setAnimationDuration(tokens.motion.bit) }

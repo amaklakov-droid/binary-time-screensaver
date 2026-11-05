@@ -19,8 +19,8 @@ Four zones, top to bottom, inside a padding of `--pad`:
 | **Header** | Kicker «Binary time» · calendar name (+ «auto») · full localized date line | Pulse dot + location source · place (L1) · coordinates or time zone (L2) · optional L3 |
 | **Date group** | 3 rows: Year, Month, Day — small bits (0.56 × b), all at 66 % opacity | |
 | **Separator** | Label «Time» + 1 px rule at 50 % across the full width | |
-| **Time group** | 4 rows: Hours, Minutes, Seconds, Hundredths — full-size bits, the main visual layer | |
-| **Footer** | Full decimal readout `YYYY·MM·DD  HH:MM:SS.cc` (+ AM/PM) · legend `● 1 ○ 0 UTC±hh:mm` | Control pills |
+| **Time group** | 3 rows: Hours, Minutes, Seconds — full-size bits, the main visual layer | |
+| **Footer** | Full decimal readout `YYYY·MM·DD  HH:MM:SS` (+ AM/PM) · legend `● 1 ○ 0 UTC±hh:mm` | Control pills |
 
 A place-value header row (`2ⁿ`: 4096 … 1) sits above the date group; hidden on narrow screens.
 
@@ -42,7 +42,6 @@ Header and footer span the full width. The bit block (place values, date group, 
 | Hours | 5 (24 h) / 4 (12 h) | 0–23 / 1–12 |
 | Minutes | 6 | 0–59 |
 | Seconds | 6 | 0–59 |
-| Hundredths | 7 | 0–99 |
 
 `w = clamp(bitLength(year), 7, 14)`.
 
@@ -56,12 +55,12 @@ Header and footer span the full width. The bit block (place values, date group, 
 - Hierarchy by opacity: 100 / 66 / 42 / 22 %, plus 50 % for the separator rule.
 - Bit states: **on** = filled; **off** = outline 5.5 % of b at 42 %; **void** = 10 % dot at 22 %. Shapes: dot (default) or square (radius 12 % of b).
 - Font: JetBrains Mono 300/400/600 with Noto fallbacks per script, tabular numerals. **Bundle fonts locally** (screensavers run offline).
-- Motion: bit change 180 ms; hundredths row has no transition; location pulse 2 s; respect reduced-motion.
+- Motion: bit change 180 ms; location pulse 2 s; respect reduced-motion.
 
 ## 4. Data
 
 ### 4.1 Time
-- Local system time and time zone. Update the display every 10 ms (one frame per hundredth); use `requestAnimationFrame` (or the platform equivalent) and touch only cells whose state changed.
+- Local system time and time zone. Update the display once a second, on the second boundary, and touch only cells whose state changed.
 - 12/24 h setting. In 12 h mode the hours row sub-label shows the localized day period (AM/PM), also appended to the readout.
 
 ### 4.2 Calendars
@@ -134,12 +133,12 @@ Persist settings per user (`ScreenSaverDefaults`). Any input dismisses a screen 
 - Controls are real buttons, keyboard-reachable.
 
 ## 8. Performance
-- Target 60 fps with < 3 % CPU on a 2020 laptop. Rebuild DOM only when `w` or language changes; otherwise mutate classes/text in place.
+- One display update per second (animations at the display rate) with < 3 % CPU on a 2020 laptop. Rebuild DOM only when `w` or language changes; otherwise mutate classes/text in place.
 - Cache `Intl` formatters. No layout thrash: sizes come from CSS, not JS measurement.
 
 ## 9. Acceptance checklist
 - [ ] Fills any screen size/aspect without scroll or clipping; narrow layout at ≤ 680 px.
-- [ ] Binary values correct for all 7 metrics, incl. 12 h (12 → `1100`) and hundredths 0–99.
+- [ ] Binary values correct for all 6 metrics, incl. 12 h (12 → `1100`).
 - [ ] Place values align across all rows for each calendar (w = 11/12/13).
 - [ ] Theme invert animates; both themes meet contrast.
 - [ ] All six languages render with correct fonts; he/ar mirror; bits stay LTR; ar/bo digits; readout order correct in ar.
@@ -152,4 +151,5 @@ Persist settings per user (`ScreenSaverDefaults`). Any input dismisses a screen 
 1. **Platform: macOS only.** Native Swift `.saver` with Core Animation rendering, no WKWebView. Min macOS 14. See `MACOS.md`.
 2. **VPN detection:** local primary-interface check by default; optional IPLocate.io check with the user's own key (§4.4).
 3. **Auto calendar:** OS calendar setting first, then a minimal time-zone map (§4.2).
-4. **Still open:** native-speaker review of he/ar/bo strings (Tibetan first); verification of catalog coordinates (SIMBAD, USGS Gazetteer). Neither blocks development.
+4. **No hundredths of a second** (2026-11-03, customer decision). Redrawing 60 times a second for the hundredths row cost 6.8 % CPU on an M1, above the 5 % limit in `MACOS.md` §5; without it the display updates once a second. The time group has three rows and the readout ends at seconds. The bit size formula in `design/tokens.json` is unchanged, and `motion.hundredthsRow` is no longer used. The prototype and `reference/screenshots/` still show the hundredths row.
+5. **Still open:** native-speaker review of he/ar/bo strings (Tibetan first); verification of catalog coordinates (SIMBAD, USGS Gazetteer). Neither blocks development.

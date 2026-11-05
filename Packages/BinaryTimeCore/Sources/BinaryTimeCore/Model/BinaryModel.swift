@@ -10,9 +10,9 @@ public enum BitState: Equatable, Sendable {
     case void
 }
 
-/// The seven displayed quantities, in row order (SPEC §2.2).
+/// The six displayed quantities, in row order (SPEC §2.2).
 public enum Metric: Int, CaseIterable, Sendable {
-    case year = 0, month, day, hours, minutes, seconds, hundredths
+    case year = 0, month, day, hours, minutes, seconds
 
     /// Rows of the «date» group are rendered at 0.56 × b and 66 % opacity.
     public var isDate: Bool { rawValue < 3 }

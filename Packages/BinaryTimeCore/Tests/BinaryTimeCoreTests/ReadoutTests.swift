@@ -8,26 +8,26 @@ final class ReadoutTests: XCTestCase {
 
     func testLatinReadout() {
         let s = Fixtures.sample("2026-10-24T19:59:17.800+03:00")
-        XCTAssertEqual(Readout.text(sample: s, hourFormat: .h24, lang: .en, catalog: i18n), "2026·10·24  19:59:17.80")
-        XCTAssertEqual(Readout.text(sample: s, hourFormat: .h12, lang: .ru, catalog: i18n), "2026·10·24  07:59:17.80")
+        XCTAssertEqual(Readout.text(sample: s, hourFormat: .h24, lang: .en, catalog: i18n), "2026·10·24  19:59:17")
+        XCTAssertEqual(Readout.text(sample: s, hourFormat: .h12, lang: .ru, catalog: i18n), "2026·10·24  07:59:17")
     }
 
     func testArabicReadoutUsesSlashAndLRM() {
         let s = Fixtures.sample("2026-10-24T19:59:24.420+03:00", calendar: .islamic)
         let text = Readout.text(sample: s, hourFormat: .h12, lang: .ar, catalog: i18n)
-        XCTAssertEqual(text, "١٤٤٨\(lrm)/\(lrm)٠٥\(lrm)/\(lrm)١٣\(lrm)  \(lrm)٠٧:٥٩:٢٤.٤٢")
+        XCTAssertEqual(text, "١٤٤٨\(lrm)/\(lrm)٠٥\(lrm)/\(lrm)١٣\(lrm)  \(lrm)٠٧:٥٩:٢٤")
         XCTAssertFalse(text.contains("·"))
     }
 
     func testTibetanReadoutKeepsDotWithLRM() {
         let s = Fixtures.sample("2026-10-24T19:59:17.800+03:00", calendar: .buddhist)
         let text = Readout.text(sample: s, hourFormat: .h24, lang: .bo, catalog: i18n)
-        XCTAssertEqual(text, "༢༥༦༩\(lrm)·\(lrm)༡༠\(lrm)·\(lrm)༢༤\(lrm)  \(lrm)༡༩:༥༩:༡༧.༨༠")
+        XCTAssertEqual(text, "༢༥༦༩\(lrm)·\(lrm)༡༠\(lrm)·\(lrm)༢༤\(lrm)  \(lrm)༡༩:༥༩:༡༧")
     }
 
     func testHebrewReadoutIsLatinDigits() {
         let s = Fixtures.sample("2026-10-24T19:59:22.790+03:00", calendar: .hebrew)
-        XCTAssertEqual(Readout.text(sample: s, hourFormat: .h24, lang: .he, catalog: i18n), "5787·02·13  19:59:22.79")
+        XCTAssertEqual(Readout.text(sample: s, hourFormat: .h24, lang: .he, catalog: i18n), "5787·02·13  19:59:22")
     }
 
     func testUTCOffsets() {

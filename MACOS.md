@@ -19,16 +19,18 @@ The legacy engine (`legacyScreenSaver.appex`) is buggy on Sonoma, Sequoia and Ta
 
 1. **Instances are not torn down.** Each activation creates a new `ScreenSaverView` while old ones keep running. → Listen for the distributed notification `com.apple.screensaver.willstop`; on it, stop timers and call `exit(0)` (not `NSApplication.terminate`). Guard against two live instances on the same screen.
 2. **`stopAnimation` isn't called** outside the System Settings thumbnail. → Don't rely on it for cleanup (see 1).
-3. **`animateOneFrame` is unreliable.** → Drive updates from your own `CADisplayLink` (`view.displayLink(target:selector:)`), not the framework's animation timer.
+3. **`animateOneFrame` is unreliable.** → Drive updates from your own timer, not the framework's animation timer. The display changes once a second (SPEC §10.4), so a `Timer` re-armed for each second boundary is enough; a `CADisplayLink` would wake the process at the display rate for nothing.
 4. **`isPreview` may be wrong on Tahoe** and the settings dialog can spawn an extra full-screen instance. → Also treat a view smaller than ~400 pt as a preview; keep preview rendering cheap.
 5. **Multi-monitor:** one view per screen; each computes its own layout from its own bounds. Test with 2 displays of different sizes and scales.
 6. **Settings UI changed in Tahoe** (screen savers are now under Wallpaper). The `configureSheet` still works; don't deep-link to the old settings pane URL.
 7. **Xcode 26 SDK + XIB with scroll/outline views crashes** on older macOS. → Build the configure sheet in code (or SwiftUI via `NSHostingView`), not XIB.
+8. **The System Settings thumbnail never gets `startAnimation`** (observed on macOS 27). WallpaperAgent creates a 1440×900 instance in its own host, snapshots it once, and shows the snapshot scaled down; the 0×0 instance in the System Settings host only supplies the `configureSheet`. When the Options sheet ends it creates a fresh instance at once and that instance reads the stored settings. → Draw the current frame as soon as the view has a window, not only in `startAnimation`; otherwise the thumbnail is black. Save the settings *before* `endSheet`, or the thumbnail shows the previous settings. The thumbnail is static.
+9. **The full-screen saver is hosted through WallpaperAgent too** (observed on macOS 27). ScreenSaverEngine runs, but the `legacyScreenSaver` host is an XPC service of WallpaperAgent, which restarts it at once if it quits while in use. Watching for the engine with `NSRunningApplication` works, but the list can come back empty for a moment while LaunchServices updates it; one such miss once quit a host whose engine kept running. → Count the engine as gone only after several misses in a row (`EngineWatch.missesToStop`), and log why the host quits.
 
 ## 3. Mapping the spec to Apple APIs
 
 ### Time and rendering
-- `CADisplayLink` callback → compute the current hundredth; if unchanged, return. Update only layers whose state changed. Wrap updates in `CATransaction` with implicit actions disabled, except for the 180 ms bit fade (explicit `CABasicAnimation` on `opacity`/`backgroundColor`). No animation on the hundredths row.
+- Timer on each second boundary → build the frame for the current second. Update only layers whose state changed. Wrap updates in `CATransaction` with implicit actions disabled, except for the 180 ms bit fade (explicit `CABasicAnimation` on `opacity`/`backgroundColor`).
 - Layout: compute token formulas from `bounds` (`cqmin = min(w, h) / 100`, `cqw = w / 100`, `cqh = h / 100`) in `layout()`; narrow layout when `w ≤ 680 pt`.
 - Respect `NSWorkspace.shared.accessibilityDisplayShouldReduceMotion`.
 

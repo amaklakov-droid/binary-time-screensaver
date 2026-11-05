@@ -16,7 +16,7 @@ public struct LanguageMeta: Codable, Equatable, Sendable {
 /// All copy for one language from `i18n.strings`.
 public struct LanguageStrings: Codable, Equatable, Sendable {
     public var title: String
-    /// Year, Month, Day, Hours, Minutes, Seconds, Hundredths.
+    /// Year, Month, Day, Hours, Minutes, Seconds.
     public var labels: [String]
     public var sep: String
     public var date: String
@@ -26,7 +26,6 @@ public struct LanguageStrings: Codable, Equatable, Sendable {
     public var monthOf: String
     public var h24: String
     public var range: String
-    public var hund: String
     public var vpn: String
     public var geo: String
     public var tz: String
@@ -37,11 +36,28 @@ public struct LanguageStrings: Codable, Equatable, Sendable {
     public var invert: String
     public var language: String
     public var controls: String
+    /// Labels of the screen-saver Options sheet.
+    public var options: OptionStrings
     public var ly: String
     public var kinds: [String]?
     public var weekdays: [String]?
     public var dayPeriods: [String]?
     public var dateLine: String?
+}
+
+/// `i18n.strings.<lang>.options`: Options-sheet labels that the on-screen pills don't already cover.
+public struct OptionStrings: Codable, Equatable, Sendable {
+    public var timeFormat: String
+    public var theme: String
+    public var dark: String
+    public var light: String
+    public var bitShape: String
+    public var dot: String
+    public var square: String
+    /// Location mode that always shows a space object.
+    public var space: String
+    public var done: String
+    public var cancel: String
 }
 
 public enum I18nError: Error, Equatable {

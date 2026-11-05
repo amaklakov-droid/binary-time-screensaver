@@ -32,6 +32,48 @@ fileGroups:
   - Scripts
   - project.yml
 targets:
+  BinaryTimeSaver:
+    type: bundle
+    platform: macOS
+    sources:
+      - path: Saver
+      - path: design/tokens.json
+        buildPhase: resources
+      - path: data/i18n.json
+        buildPhase: resources
+      - path: data/celestial-catalog.json
+        buildPhase: resources
+      - path: data/zone.tab
+        buildPhase: resources
+      - path: Fonts
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: BinaryTimeUI
+      - package: BinaryTimeCore
+      - sdk: ScreenSaver.framework
+    info:
+      path: Saver/Info.plist
+      properties:
+        CFBundleName: Binary Time
+        CFBundleDisplayName: Binary Time
+        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleShortVersionString: "0.3.0"
+        CFBundleVersion: "3"
+        LSMinimumSystemVersion: "14.0"
+        NSPrincipalClass: BinaryTimeSaverView
+        NSHumanReadableCopyright: "Fonts: SIL Open Font License 1.1"
+    settings:
+      base:
+        PRODUCT_NAME: Binary Time
+        PRODUCT_MODULE_NAME: BinaryTimeSaver
+        # Temporary identifier: choose the permanent one before release (settings are stored under it).
+        PRODUCT_BUNDLE_IDENTIFIER: com.binarytime.saver
+        WRAPPER_EXTENSION: saver
+        ENABLE_HARDENED_RUNTIME: YES
+        COMBINE_HIDPI_IMAGES: YES
+    scheme:
+      testTargets: []
   DebugHost:
     type: application
     platform: macOS

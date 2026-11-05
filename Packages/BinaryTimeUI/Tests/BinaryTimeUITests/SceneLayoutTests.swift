@@ -100,8 +100,8 @@ final class SceneLayoutTests: XCTestCase {
                 XCTAssertEqual(a.midY, b.midY, accuracy: 0.01, "\(label): \(metric) cells not on one line", file: file, line: line)
             }
         }
-        // Rows are stacked without overlap: hours grid below day grid, hundredths above the footer readout.
-        let dayBits = frames.shapes[.bit(.day, 0)]!, hourBits = frames.shapes[.bit(.hours, 0)]!, lastBits = frames.shapes[.bit(.hundredths, 0)]!
+        // Rows are stacked without overlap: hours grid below day grid, seconds above the footer readout.
+        let dayBits = frames.shapes[.bit(.day, 0)]!, hourBits = frames.shapes[.bit(.hours, 0)]!, lastBits = frames.shapes[.bit(.seconds, 0)]!
         XCTAssertLessThan(dayBits.maxY, hourBits.minY, "\(label): date and time groups overlap", file: file, line: line)
         XCTAssertLessThan(lastBits.maxY, frames.texts[.readout]!.frame.minY, "\(label): bit block overlaps the readout", file: file, line: line)
         let header = max(frames.texts[.dateLine]!.frame.maxY, frames.texts[.locationL2]!.frame.maxY)
@@ -149,7 +149,7 @@ final class SceneLayoutTests: XCTestCase {
         narrow.controls = true
         let (n, _, _) = try frames(for: narrow)
         XCTAssertGreaterThan(n.controls.minY, n.texts[.legendOffset]!.frame.maxY, "Narrow: controls wrap below the legend")
-        XCTAssertLessThan(n.shapes[.bit(.hundredths, 0)]!.maxY, n.texts[.readout]!.frame.minY)
+        XCTAssertLessThan(n.shapes[.bit(.seconds, 0)]!.maxY, n.texts[.readout]!.frame.minY)
     }
 
     func testPlaintextDirection() {

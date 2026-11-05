@@ -41,10 +41,10 @@ final class BinaryModelTests: XCTestCase {
         XCTAssertEqual(states, expected)
     }
 
-    func testHundredthsEdges() {
-        XCTAssertEqual(BinaryModel.states(value: 0, bits: 7, columns: 7), Array(repeating: .off, count: 7))
-        XCTAssertEqual(BinaryModel.binaryString(99, bits: 7), "1100011")
-        XCTAssertEqual(BinaryModel.states(value: 99, bits: 7, columns: 7), "1100011".map { $0 == "1" ? .on : .off })
+    func testSecondsEdges() {
+        XCTAssertEqual(BinaryModel.states(value: 0, bits: 6, columns: 6), Array(repeating: .off, count: 6))
+        XCTAssertEqual(BinaryModel.binaryString(59, bits: 6), "111011")
+        XCTAssertEqual(BinaryModel.states(value: 59, bits: 6, columns: 6), "111011".map { $0 == "1" ? .on : .off })
     }
 
     func testBinaryStringPads() {

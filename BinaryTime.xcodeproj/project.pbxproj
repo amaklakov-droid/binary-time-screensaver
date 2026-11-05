@@ -9,14 +9,24 @@
 /* Begin PBXBuildFile section */
 		08496C5F1983367BE8693B89 /* tokens.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FDEFD17894EAD5877D31676 /* tokens.json */; };
 		0B26BDEACE69782DB76791B3 /* BinaryTimeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 03009CF53C76F9CEE140D80B /* BinaryTimeCore */; };
+		1AD626C75A0363D86B70230A /* BinaryTimeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 40EFD86122790F878476D2E5 /* BinaryTimeCore */; };
 		32B874F4873D9BD9FBCAAB13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523214F9BF65331390155D38 /* main.swift */; };
+		3E9CD7AC032D7FDFD028324B /* OptionsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CFB0E4AB80241B878B278A /* OptionsSheet.swift */; };
 		5D28A22ADCE681AF31590FAE /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AB065F6690375A8A5BDE386C /* Fonts */; };
+		5E1582FFBAA41B184CA9FF3B /* tokens.json in Resources */ = {isa = PBXBuildFile; fileRef = 2FDEFD17894EAD5877D31676 /* tokens.json */; };
 		707383BC0CFFE6A9CC13B40A /* HostOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FA925664E20A12C7B795AE /* HostOptions.swift */; };
+		70778A1640F66640936F4516 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AB065F6690375A8A5BDE386C /* Fonts */; };
+		70FDF32CF99E0F60E1E1A35D /* BinaryTimeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4FFFEDC8BB451E111EF7E3 /* BinaryTimeUI */; };
 		8639640D647825279F71B687 /* ControlsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D978735EF5C37557F216F02 /* ControlsBar.swift */; };
+		8941C54CC1AC5BCD5DF553AC /* i18n.json in Resources */ = {isa = PBXBuildFile; fileRef = 6117BD50E922D65CDD546C40 /* i18n.json */; };
 		9DA5A0B0482FD520E4E84B5A /* Screenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98046137AC5CC3A417AEAC /* Screenshot.swift */; };
+		A675D8E39166067153E703DE /* BinaryTimeSaverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD37FF6B3212F48C6D205D43 /* BinaryTimeSaverView.swift */; };
+		B28CF722B125A3B3DC36DA6D /* celestial-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = E986B88F5AA632602BBBC4F9 /* celestial-catalog.json */; };
 		B4A7E4E7F6541629738BC576 /* zone.tab in Resources */ = {isa = PBXBuildFile; fileRef = 9186E053A5F43DB58E845F4A /* zone.tab */; };
+		D3222940A9864F0B6F093FC0 /* zone.tab in Resources */ = {isa = PBXBuildFile; fileRef = 9186E053A5F43DB58E845F4A /* zone.tab */; };
 		D6903BABCAF37E65A2FD95EA /* celestial-catalog.json in Resources */ = {isa = PBXBuildFile; fileRef = E986B88F5AA632602BBBC4F9 /* celestial-catalog.json */; };
 		D78D81E19021B97C1B8D2A8E /* i18n.json in Resources */ = {isa = PBXBuildFile; fileRef = 6117BD50E922D65CDD546C40 /* i18n.json */; };
+		E940224B31C4F52FEC042CF6 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB343998366A1A45A232F46 /* ScreenSaver.framework */; };
 		EECAAE6AA1B2368C0FC00FA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEA4A1439ACD4E92D67BD2F /* AppDelegate.swift */; };
 		F22E5FFB72F1B0FB639E9AA8 /* BinaryTimeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 17D321F803B368F5EE29F1E5 /* BinaryTimeUI */; };
 /* End PBXBuildFile section */
@@ -26,16 +36,23 @@
 		1AE7ACB56854706398B4C248 /* BinaryTimeUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BinaryTimeUI; path = Packages/BinaryTimeUI; sourceTree = SOURCE_ROOT; };
 		2AE6C3F3FAEA573EF5CD4E1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2FDEFD17894EAD5877D31676 /* tokens.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tokens.json; sourceTree = "<group>"; };
+		49FEDC488018BE73960173AC /* render-references.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "render-references.sh"; sourceTree = "<group>"; };
 		523214F9BF65331390155D38 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5D091BE4A1CD348448E63800 /* BinaryTimeSaver.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinaryTimeSaver.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		605C9162D2A1C0346855EC87 /* fetch-fonts.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "fetch-fonts.sh"; sourceTree = "<group>"; };
 		6117BD50E922D65CDD546C40 /* i18n.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = i18n.json; sourceTree = "<group>"; };
 		6786E19CF89E2031A6A7207E /* BinaryTimeCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BinaryTimeCore; path = Packages/BinaryTimeCore; sourceTree = SOURCE_ROOT; };
 		6D978735EF5C37557F216F02 /* ControlsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlsBar.swift; sourceTree = "<group>"; };
+		6EB746F4EFD8EBBD20337291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9186E053A5F43DB58E845F4A /* zone.tab */ = {isa = PBXFileReference; path = zone.tab; sourceTree = "<group>"; };
 		96FA925664E20A12C7B795AE /* HostOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostOptions.swift; sourceTree = "<group>"; };
+		9AB343998366A1A45A232F46 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
 		AB065F6690375A8A5BDE386C /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = SOURCE_ROOT; };
 		AE7A3A67C0E0716EC0652E5C /* DebugHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD37FF6B3212F48C6D205D43 /* BinaryTimeSaverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryTimeSaverView.swift; sourceTree = "<group>"; };
 		C10706D656A2F1476C373391 /* tokens.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = tokens.css; sourceTree = "<group>"; };
 		D455EAFB50F974C5C651B57F /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
+		E1CFB0E4AB80241B878B278A /* OptionsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsSheet.swift; sourceTree = "<group>"; };
 		E986B88F5AA632602BBBC4F9 /* celestial-catalog.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "celestial-catalog.json"; sourceTree = "<group>"; };
 		EC98046137AC5CC3A417AEAC /* Screenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screenshot.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,6 +67,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B48843A4FCAE77DE81C248B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70FDF32CF99E0F60E1E1A35D /* BinaryTimeUI in Frameworks */,
+				1AD626C75A0363D86B70230A /* BinaryTimeCore in Frameworks */,
+				E940224B31C4F52FEC042CF6 /* ScreenSaver.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -60,6 +87,16 @@
 				1AE7ACB56854706398B4C248 /* BinaryTimeUI */,
 			);
 			path = Packages;
+			sourceTree = "<group>";
+		};
+		7153BA86F09BCC40E617ED7B /* Saver */ = {
+			isa = PBXGroup;
+			children = (
+				BD37FF6B3212F48C6D205D43 /* BinaryTimeSaverView.swift */,
+				6EB746F4EFD8EBBD20337291 /* Info.plist */,
+				E1CFB0E4AB80241B878B278A /* OptionsSheet.swift */,
+			);
+			path = Saver;
 			sourceTree = "<group>";
 		};
 		73509764CDEAEC6D3E102606 /* data */ = {
@@ -81,7 +118,9 @@
 				BB9AE8DBAC0F1E949B6CA917 /* DebugHost */,
 				F28C2D36A2D61E6A59069CEC /* design */,
 				68B3478E592A274D4EB8F750 /* Packages */,
+				7153BA86F09BCC40E617ED7B /* Saver */,
 				F7D029A13C718D1A199E1100 /* Scripts */,
+				DBC396E2DF1F56A8F321F8D9 /* Frameworks */,
 				CAE5FBD191A723A1BB24E64B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -102,9 +141,18 @@
 		CAE5FBD191A723A1BB24E64B /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				5D091BE4A1CD348448E63800 /* BinaryTimeSaver.bundle */,
 				AE7A3A67C0E0716EC0652E5C /* DebugHost.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DBC396E2DF1F56A8F321F8D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AB343998366A1A45A232F46 /* ScreenSaver.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F28C2D36A2D61E6A59069CEC /* design */ = {
@@ -119,6 +167,8 @@
 		F7D029A13C718D1A199E1100 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				605C9162D2A1C0346855EC87 /* fetch-fonts.sh */,
+				49FEDC488018BE73960173AC /* render-references.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -126,6 +176,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C91E297015E07060F4E9FFC0 /* BinaryTimeSaver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB68C5E96B70E5E76615239D /* Build configuration list for PBXNativeTarget "BinaryTimeSaver" */;
+			buildPhases = (
+				2E76FDB296B9E1B8EF827B45 /* Sources */,
+				45D50441E4D765A2B26D3E12 /* Resources */,
+				5B48843A4FCAE77DE81C248B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BinaryTimeSaver;
+			packageProductDependencies = (
+				7D4FFFEDC8BB451E111EF7E3 /* BinaryTimeUI */,
+				40EFD86122790F878476D2E5 /* BinaryTimeCore */,
+			);
+			productName = BinaryTimeSaver;
+			productReference = 5D091BE4A1CD348448E63800 /* BinaryTimeSaver.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		E2AF1F90B378405A39F5C343 /* DebugHost */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B04A83D89DAB19E4CCE314B /* Build configuration list for PBXNativeTarget "DebugHost" */;
@@ -156,6 +227,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
+					C91E297015E07060F4E9FFC0 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+					};
 					E2AF1F90B378405A39F5C343 = {
 						DevelopmentTeam = "";
 						ProvisioningStyle = Manual;
@@ -180,12 +255,25 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				C91E297015E07060F4E9FFC0 /* BinaryTimeSaver */,
 				E2AF1F90B378405A39F5C343 /* DebugHost */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		45D50441E4D765A2B26D3E12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70778A1640F66640936F4516 /* Fonts in Resources */,
+				B28CF722B125A3B3DC36DA6D /* celestial-catalog.json in Resources */,
+				8941C54CC1AC5BCD5DF553AC /* i18n.json in Resources */,
+				5E1582FFBAA41B184CA9FF3B /* tokens.json in Resources */,
+				D3222940A9864F0B6F093FC0 /* zone.tab in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7375E6AB15A45C517C79A4FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,6 +289,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2E76FDB296B9E1B8EF827B45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A675D8E39166067153E703DE /* BinaryTimeSaverView.swift in Sources */,
+				3E9CD7AC032D7FDFD028324B /* OptionsSheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8641FE9702EA0EDB016B76A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,6 +381,24 @@
 			};
 			name = Debug;
 		};
+		59F1C35911D2BBD2AE507807 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Saver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.binarytime.saver;
+				PRODUCT_MODULE_NAME = BinaryTimeSaver;
+				PRODUCT_NAME = "Binary Time";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = saver;
+			};
+			name = Debug;
+		};
 		7CB3F8B5192EAAA03EC61ADD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -299,6 +414,24 @@
 				SDKROOT = macosx;
 			};
 			name = Debug;
+		};
+		A053F5B619EED9204A71C016 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Saver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.binarytime.saver;
+				PRODUCT_MODULE_NAME = BinaryTimeSaver;
+				PRODUCT_NAME = "Binary Time";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = saver;
+			};
+			name = Release;
 		};
 		DDB94789FAA354FC2AF24F26 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -399,6 +532,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		FB68C5E96B70E5E76615239D /* Build configuration list for PBXNativeTarget "BinaryTimeSaver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59F1C35911D2BBD2AE507807 /* Debug */,
+				A053F5B619EED9204A71C016 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
@@ -418,6 +560,14 @@
 			productName = BinaryTimeCore;
 		};
 		17D321F803B368F5EE29F1E5 /* BinaryTimeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BinaryTimeUI;
+		};
+		40EFD86122790F878476D2E5 /* BinaryTimeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BinaryTimeCore;
+		};
+		7D4FFFEDC8BB451E111EF7E3 /* BinaryTimeUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BinaryTimeUI;
 		};

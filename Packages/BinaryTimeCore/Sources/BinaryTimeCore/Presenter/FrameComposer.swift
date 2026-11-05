@@ -1,8 +1,7 @@
 import Foundation
 
-/// Produces one `ScreenModel` per frame. The full model (date line, labels, location) is rebuilt only
-/// when the second changes; in between only the hundredths row and the readout are patched, so a
-/// 60–120 Hz display link costs a few string operations per frame (SPEC §8).
+/// Produces one `ScreenModel` per displayed second. Repeated calls within the same second (re-renders after
+/// a settings or size change) return the cached model.
 public final class FrameComposer {
     public let resources: CoreResources
     public let presenter: ScreenPresenter
@@ -57,14 +56,13 @@ public final class FrameComposer {
         cachedModel = nil
     }
 
-    /// The model for `instant`. Equal inputs within one second return the cached full model with the
-    /// hundredths row and readout patched.
+    /// The model for `instant`. Equal inputs within one second return the cached model.
     public func frame(at instant: Date) -> ScreenModel {
         let sample = ClockSample.make(at: instant, timeZone: timeZone, calendar: calendar)
         let spaceIndex = isSpaceMode ? spaceRotator.index(at: instant) : -1
         let secondKey = "\(sample.date.year)-\(sample.date.month)-\(sample.date.day) \(sample.hour24):\(sample.minute):\(sample.second)"
         if let cached = cachedModel, cachedSecondKey == secondKey, cachedSpaceIndex == spaceIndex {
-            return presenter.patchingFastRows(cached, sample: sample, settings: settings)
+            return cached
         }
         let location = locationResolver.model(for: locationSource(at: instant), lang: language)
         let context = FrameContext(instant: instant, timeZone: timeZone, language: language, calendar: calendar, settings: settings, location: location)
@@ -73,25 +71,5 @@ public final class FrameComposer {
         cachedSecondKey = secondKey
         cachedSpaceIndex = spaceIndex
         return model
-    }
-}
-
-public extension ScreenPresenter {
-    /// Returns `model` with the hundredths row and the readout recomputed for `sample`.
-    /// Everything else is unchanged within the same second.
-    func patchingFastRows(_ model: ScreenModel, sample: ClockSample, settings: Settings) -> ScreenModel {
-        var patched = model
-        let (value, bits) = sample.value(of: .hundredths, hourFormat: settings.hourFormat)
-        let decimal = i18n.digits(Readout.pad2(value), model.language)
-        if let index = patched.rows.firstIndex(where: { $0.metric == .hundredths }) {
-            var row = patched.rows[index]
-            row.value = value
-            row.decimal = decimal
-            row.states = BinaryModel.states(value: value, bits: bits, columns: model.columns)
-            row.accessibilityLabel = "\(row.label) \(decimal) — \(BinaryModel.binaryString(value, bits: bits))"
-            patched.rows[index] = row
-        }
-        patched.footer.readout = Readout.text(sample: sample, hourFormat: settings.hourFormat, lang: model.language, catalog: i18n)
-        return patched
     }
 }

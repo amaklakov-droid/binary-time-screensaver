@@ -1,7 +1,8 @@
 import AppKit
 import BinaryTimeCore
 
-/// Layer-hosting view that drives a `ClockScene` from a `FrameComposer` on a display link.
+/// Layer-hosting view that drives a `ClockScene` from a `FrameComposer`, one frame per second on the
+/// second boundary; the 180 ms bit fades and the theme inversion run in Core Animation in between.
 /// Shared by the screen saver and DebugHost; the saver adds its lifecycle on top (MACOS.md §2).
 public final class ClockSceneView: NSView {
     public let scene: ClockScene
@@ -10,8 +11,6 @@ public final class ClockSceneView: NSView {
 
     /// Source of time; DebugHost freezes it for screenshots.
     public var clock: () -> Date = { Date() }
-    /// Lower frame rate for System Settings previews (0 = every display refresh).
-    public var maximumFramesPerSecond: Int = 0
     /// Layer-1 VPN check (SPEC §4.4). Off in tests and screenshots.
     public var monitorsVPN = true {
         didSet { if isRunning { configureVPNMonitoring() } }
@@ -36,9 +35,8 @@ public final class ClockSceneView: NSView {
     public var onControlsFrameChange: ((NSRect) -> Void)?
 
     public private(set) var isRunning = false
-    private var displayLink: CADisplayLink?
-    private var lastHundredth: Int64 = .min
-    private var lastFrameTime: CFTimeInterval = 0
+    private var timer: Timer?
+    private var lastSecond: Int64 = .min
     private var vpnMonitor: VPNChangeMonitor?
     private let vpnDetector = LocalVPNDetector(provider: SystemPrimaryInterfaceProvider())
     private var observers: [NSObjectProtocol] = []
@@ -88,39 +86,50 @@ public final class ClockSceneView: NSView {
     public func start() {
         guard !isRunning else { return }
         isRunning = true
-        let link = displayLink(target: self, selector: #selector(tick(_:)))
-        link.add(to: .main, forMode: .common)
-        displayLink = link
         configureVPNMonitoring()
         renderNow()
+        scheduleTick()
     }
 
     public func stop() {
         guard isRunning else { return }
         isRunning = false
-        displayLink?.invalidate()
-        displayLink = nil
+        timer?.invalidate()
+        timer = nil
         vpnMonitor?.stop()
         vpnMonitor = nil
     }
 
-    @objc private func tick(_ link: CADisplayLink) {
-        if maximumFramesPerSecond > 0 {
-            let minInterval = 1.0 / Double(maximumFramesPerSecond)
-            if link.targetTimestamp - lastFrameTime < minInterval * 0.9 { return }
-            lastFrameTime = link.targetTimestamp
-        }
+    /// Fires just after the next whole second of the wall clock, then re-arms; re-arming every time
+    /// keeps the timer from drifting off the boundary.
+    private func scheduleTick() {
+        let now = Date().timeIntervalSince1970
+        let delay = max(0.01, now.rounded(.down) + 1 - now + ClockSceneView.boundaryMargin)
+        let timer = Timer(timeInterval: delay, repeats: false) { [weak self] _ in self?.tick() }
+        timer.tolerance = ClockSceneView.boundaryMargin
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
+    }
+
+    /// Lateness allowed after the second boundary, so a frame never lands just before it.
+    static let boundaryMargin: TimeInterval = 0.005
+
+    private func tick() {
+        guard isRunning else { return }
         let now = clock()
-        let hundredth = Int64((now.timeIntervalSince1970 * 100).rounded(.down))
-        if hundredth == lastHundredth { return }
-        lastHundredth = hundredth
-        render(at: now, animated: true)
+        let second = Int64(now.timeIntervalSince1970.rounded(.down))
+        if second != lastSecond {
+            lastSecond = second
+            render(at: now, animated: true)
+        }
+        scheduleTick()
     }
 
     /// Renders the current instant immediately (after a settings or size change).
     public func renderNow() {
-        lastHundredth = .min
-        render(at: clock(), animated: false)
+        let now = clock()
+        lastSecond = Int64(now.timeIntervalSince1970.rounded(.down))
+        render(at: now, animated: false)
     }
 
     private func render(at instant: Date, animated: Bool) {

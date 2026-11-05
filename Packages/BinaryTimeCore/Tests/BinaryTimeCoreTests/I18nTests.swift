@@ -9,7 +9,7 @@ final class I18nTests: XCTestCase {
         XCTAssertEqual(i18n.languages, Language.allCases.map(\.rawValue), "Enum order must match switcher order in i18n.json")
         for lang in Language.allCases {
             let t = i18n.strings(lang)
-            XCTAssertEqual(t.labels.count, 7, lang.rawValue)
+            XCTAssertEqual(t.labels.count, 6, lang.rawValue)
             for cal in CalendarID.allCases {
                 XCTAssertFalse(i18n.calendarName(cal, lang).isEmpty, "\(lang) \(cal)")
                 XCTAssertFalse(i18n.era(cal, lang).isEmpty, "\(lang) \(cal)")
