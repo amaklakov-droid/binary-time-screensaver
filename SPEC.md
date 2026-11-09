@@ -148,8 +148,9 @@ Persist settings per user (`ScreenSaverDefaults`). Any input dismisses a screen 
 - [ ] Settings persist; reduced motion respected; fonts work offline.
 
 ## 10. Decisions
-1. **Platform: macOS only.** Native Swift `.saver` with Core Animation rendering, no WKWebView. Min macOS 14. See `MACOS.md`.
+1. **Platform: macOS only.** Native Swift `.saver` with Core Animation rendering, no WKWebView. Min macOS 26 Tahoe, Apple silicon only (decision 5). See `MACOS.md`.
 2. **VPN detection:** local primary-interface check by default; optional IPLocate.io check with the user's own key (§4.4).
 3. **Auto calendar:** OS calendar setting first, then a minimal time-zone map (§4.2).
 4. **No hundredths of a second** (2026-11-03, customer decision). Redrawing 60 times a second for the hundredths row cost 6.8 % CPU on an M1, above the 5 % limit in `MACOS.md` §5; without it the display updates once a second. The time group has three rows and the readout ends at seconds. The bit size formula in `design/tokens.json` is unchanged, and `motion.hundredthsRow` is no longer used. The prototype and `reference/screenshots/` still show the hundredths row.
-5. **Still open:** native-speaker review of he/ar/bo strings (Tibetan first); verification of catalog coordinates (SIMBAD, USGS Gazetteer). Neither blocks development.
+5. **Apple silicon and macOS 26 Tahoe or later only** (2026-11-09, customer decision). No Intel build and no Sonoma or Sequoia support, so the release is not tested on virtual machines of older systems: the build is checked on the customer's Mac and by the testers of the pre-release. The code itself needs only macOS 14 (`NSView.displayLink`); the minimum is a support decision, recorded in `project.yml`, `MACOS.md` §1 and the CI matrix.
+6. **Still open:** native-speaker review of he/ar/bo strings (Tibetan first); verification of catalog coordinates (SIMBAD, USGS Gazetteer). Neither blocks development.

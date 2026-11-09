@@ -16,7 +16,7 @@ Bundle these JSON files as resources and decode them at runtime, or generate Swi
 
 ## Hard rules
 - Swift + AppKit + Core Animation. **No WKWebView, no web code in the product.** `prototype/` is a behavioural reference only.
-- macOS 14+, universal binary. No CoreLocation. No network calls unless the user enables the online VPN check.
+- macOS 26+, Apple silicon only (arm64). No CoreLocation. No network calls unless the user enables the online VPN check.
 - The bit grid is **always LTR, most significant bit on the left**, in every language, including Hebrew and Arabic.
 - Bundle all fonts (OFL); never rely on system or online fonts.
 - Apply all lifecycle workarounds from `MACOS.md` §2. The legacy screen-saver host on Sonoma–Tahoe leaks instances.

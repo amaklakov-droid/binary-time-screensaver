@@ -9,8 +9,8 @@ Platform decision: **macOS only**. Behaviour and design are defined in `SPEC.md`
 | Product type | `.saver` bundle (ScreenSaver.framework, `ScreenSaverView` subclass) | The only way to appear in System Settings › Wallpaper › Screen Saver |
 | Language | Swift 5.10+/6, AppKit | |
 | Rendering | **Native Core Animation** (CALayer per bit, NSTextField / CoreText for text). **No WKWebView.** | WKWebView in savers has known multi-monitor failures (FB17938870), higher memory, and since instances leak on Sonoma–Tahoe (below), each leaked web view is expensive. The UI is simple enough that native code is shorter than wrapping web code. |
-| Min OS | macOS 14 Sonoma | `NSView.displayLink(target:selector:)`; covers Sonoma, Sequoia, Tahoe |
-| Architectures | Universal (arm64 + x86_64) | |
+| Min OS | macOS 26 Tahoe | Customer decision 2026-11-09 (SPEC §10.5): one supported host generation, no Sonoma or Sequoia test VMs. The code itself needs only macOS 14 (`NSView.displayLink(target:selector:)`) |
+| Architectures | Apple silicon only (arm64) | Same decision; Apple announced Tahoe as the last macOS for Intel Macs |
 | Distribution | Developer ID signed + notarized `.saver` in a `.dmg` (or a small installer app) | The App Store does not distribute screen savers |
 
 ## 2. Known ScreenSaver.framework problems and required workarounds
@@ -97,7 +97,7 @@ BinaryTime/
 ```
 
 ## 5. Definition of done (macOS-specific, in addition to SPEC §9)
-- [ ] Installs by double-click; appears in Wallpaper › Screen Saver on Sonoma, Sequoia, Tahoe.
+- [ ] Installs by double-click; appears in Wallpaper › Screen Saver on Tahoe and later.
 - [ ] No accumulating processes after 20 activate/dismiss cycles (Activity Monitor: one `legacyScreenSaver` per screen at most while running, none piling up after).
 - [ ] Two monitors with different sizes and scales both render correctly.
 - [ ] CPU < 5 % on an M1 at 60 Hz; memory stable over 8 h.

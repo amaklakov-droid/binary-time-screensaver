@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Builds the release .dmg (TASK.md milestone 4) into dist/: universal Release build, bundle checks,
+# Builds the release .dmg (TASK.md milestone 4) into dist/: arm64 Release build, bundle checks,
 # Developer ID signature, notarization and stapling of the .saver and the .dmg.
 #
 #   DEVELOPER_ID="Developer ID Application: Name (TEAMID)" Scripts/release.sh
@@ -28,7 +28,7 @@ STAGE=$ROOT/build/dmg
 step() { print -P "%B==> $1%b" }
 fail() { echo "error: $1" >&2; exit 1 }
 
-step "Build (Release, universal)"
+step "Build (Release, arm64)"
 rm -rf "$DERIVED"
 xcodebuild -project "$ROOT/BinaryTime.xcodeproj" -scheme BinaryTimeSaver -configuration Release \
     -derivedDataPath "$DERIVED" clean build >"$ROOT/build/release.log" 2>&1 \
@@ -40,7 +40,7 @@ BUNDLE_ID=$(plutil -extract CFBundleIdentifier raw "$PLIST")
 VERSION=$(plutil -extract CFBundleShortVersionString raw "$PLIST")
 BINARY=$SAVER/Contents/MacOS/$(plutil -extract CFBundleExecutable raw "$PLIST")
 ARCHS=$(lipo -archs "$BINARY")
-[[ $ARCHS == *arm64* && $ARCHS == *x86_64* ]] || fail "not universal: $ARCHS"
+[[ $ARCHS == arm64 ]] || fail "expected arm64 only, got: $ARCHS"
 for f in tokens.json i18n.json celestial-catalog.json zone.tab thumbnail.png thumbnail@2x.png; do
     [[ -f $SAVER/Contents/Resources/$f ]] || fail "missing resource $f"
 done

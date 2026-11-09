@@ -11,15 +11,14 @@ and the most significant bit is on the left. The decimal value is next to every 
   hides the real location and shows a space object instead.
 - **Options:** language, 24 or 12 hours, calendar, dark or light theme, round or square bits, location mode.
 
-Requires macOS 14 Sonoma or later, on Apple silicon or Intel.
+Requires macOS 26 Tahoe or later on a Mac with Apple silicon.
 
 ## Install
 
 1. Download `BinaryTime-<version>.dmg` from [Releases](https://github.com/amaklakov-droid/binary-time-screensaver/releases)
    and open it.
 2. Double-click **Binary Time.saver**. macOS asks whether to install it for you only or for all users.
-3. System Settings opens the screen saver list: **Wallpaper › Screen Saver** on macOS 26 and later,
-   **Screen Saver** on Sonoma and Sequoia. Select **Binary Time**.
+3. System Settings opens the screen saver list under **Wallpaper › Screen Saver**. Select **Binary Time**.
 4. **Options…** next to the preview sets the language, calendar, theme and the rest.
 
 **Update:** quit System Settings, then double-click the new `Binary Time.saver` and choose **Replace**. If the old
@@ -77,13 +76,13 @@ MIT, see `LICENSE`. The bundled fonts are under the SIL Open Font License 1.1; s
 
 ## По-русски
 
-Скринсейвер для macOS: дата и время в двоичном виде, только чёрное и белое, 6 языков, 4 календаря. Нужна macOS 14
-Sonoma или новее.
+Скринсейвер для macOS: дата и время в двоичном виде, только чёрное и белое, 6 языков, 4 календаря. Нужна macOS 26
+Tahoe или новее и Mac на Apple Silicon.
 
 **Установка.** Скачайте `BinaryTime-<версия>.dmg` из
 [Releases](https://github.com/amaklakov-droid/binary-time-screensaver/releases), откройте его и дважды щёлкните
 **Binary Time.saver**. macOS спросит, ставить ли только для вас или для всех пользователей. Затем в Системных
-настройках выберите **Binary Time**: «Обои › Заставка» на macOS 26 и новее, «Заставка» на Sonoma и Sequoia.
+настройках выберите **Binary Time** в разделе «Обои › Заставка».
 Кнопка «Параметры…» открывает настройки.
 
 **Обновление.** Закройте Системные настройки, дважды щёлкните новый `Binary Time.saver` и выберите «Заменить». Если
